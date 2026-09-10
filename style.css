@@ -1,409 +1,586 @@
-/* ==========================================
-   SMART TRANSIT SAFETY NETWORK
-   DEMO JAVASCRIPT
-========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+html {
+  scroll-behavior: smooth;
+}
 
-/* SAMPLE BUS DATA */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f8fc;
+  color: #172033;
+  line-height: 1.6;
+}
 
-const buses = {
+/* HEADER */
 
-  "RJ-01": {
-    passengers: 4,
-    capacity: 5,
-    gate: "OPEN",
-    emergency: "NORMAL"
-  },
+header {
+  height: 72px;
+  background: #102a43;
+  color: white;
 
-  "RJ-02": {
-    passengers: 5,
-    capacity: 5,
-    gate: "LOCKED",
-    emergency: "NORMAL"
-  },
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  "RJ-03": {
-    passengers: 3,
-    capacity: 5,
-    gate: "OPEN",
-    emergency: "NORMAL"
-  },
+  padding: 0 7%;
+}
 
-  "GJ-01": {
-    passengers: 2,
-    capacity: 5,
-    gate: "OPEN",
-    emergency: "NORMAL"
-  }
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
 
-};
+nav {
+  display: flex;
+  gap: 28px;
+}
 
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
 
-/* GO TO SECTION */
-
-function goTo(id) {
-
-  document.getElementById(id).scrollIntoView({
-    behavior: "smooth"
-  });
-
+nav a:hover {
+  color: #8fd3ff;
 }
 
 
-/* PUBLIC BUS SEARCH */
+/* HERO */
 
-function checkBus() {
+.hero {
+  min-height: 620px;
 
-  let busNumber =
-    document.getElementById("busInput")
-    .value
-    .trim()
-    .toUpperCase();
+  display: flex;
+  align-items: center;
 
-  if (busNumber === "") {
+  padding: 70px 8%;
 
-    alert("Please enter a bus number.");
+  background:
+    linear-gradient(120deg, #102a43, #176b87);
+  
+  color: white;
+}
 
-    return;
-  }
+.hero h1 {
+  font-size: clamp(38px, 6vw, 72px);
+  line-height: 1.05;
+  margin: 15px 0 20px;
+}
 
+.tag {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #2388a9;
+}
 
-  let bus = buses[busNumber];
+.hero .tag {
+  color: #9eddf3;
+}
 
+.subtitle {
+  max-width: 650px;
+  color: #d8e7f2;
+  font-size: 18px;
+}
 
-  if (!bus) {
-
-    alert(
-      "Bus not found in demo database.\n\nTry RJ-01, RJ-02, RJ-03 or GJ-01."
-    );
-
-    return;
-  }
-
-
-  document.getElementById("busResult")
-    .classList.remove("hidden");
-
-
-  document.getElementById("resultBus")
-    .textContent = busNumber;
-
-
-  document.getElementById("resultPassengers")
-    .textContent =
-    bus.passengers + " / " + bus.capacity;
-
-
-  document.getElementById("resultSeats")
-    .textContent =
-    bus.capacity - bus.passengers;
-
-
-  document.getElementById("resultGate")
-    .textContent =
-    bus.gate;
-
-
-  document.getElementById("resultEmergency")
-    .textContent =
-    bus.emergency;
-
-
-  let status =
-    document.getElementById("resultStatus");
-
-
-  if (bus.passengers >= bus.capacity) {
-
-    status.textContent = "● FULL";
-    status.className = "status danger";
-
-  } else {
-
-    status.textContent = "● SAFE";
-    status.className = "status safe";
-
-  }
-
+.buttons {
+  margin-top: 35px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 
-/* ==========================================
-   LOGIN SYSTEM
-========================================== */
+/* BUTTONS */
 
-let loginType = "state";
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 13px 20px;
 
+  background: #2388a9;
+  color: white;
 
-function openLogin(type) {
+  font-size: 15px;
+  font-weight: bold;
 
-  loginType = type;
+  cursor: pointer;
+}
 
-  document
-    .getElementById("loginModal")
-    .classList.remove("hidden");
+button:hover {
+  opacity: .88;
+}
 
-
-  document
-    .getElementById("loginMessage")
-    .textContent = "";
-
-
-  if (type === "main") {
-
-    document
-      .getElementById("loginTitle")
-      .textContent = "👑 Main Admin Login";
-
-    document
-      .getElementById("stateSelect")
-      .style.display = "none";
-
-  } else {
-
-    document
-      .getElementById("loginTitle")
-      .textContent = "🏛️ State Admin Login";
-
-    document
-      .getElementById("stateSelect")
-      .style.display = "block";
-
-  }
-
+.outline {
+  background: transparent;
+  border: 1px solid white;
 }
 
 
-function closeLogin() {
+/* SECTIONS */
 
-  document
-    .getElementById("loginModal")
-    .classList.add("hidden");
+.section {
+  padding: 85px 8%;
+}
 
+.section h2 {
+  font-size: 38px;
+  margin: 8px 0 10px;
+}
+
+.description {
+  color: #64748b;
+}
+
+
+/* SEARCH */
+
+.search-box {
+  margin-top: 30px;
+  display: flex;
+  max-width: 550px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 14px;
+
+  border: 1px solid #d6dee8;
+  border-radius: 8px;
+
+  font-size: 15px;
+}
+
+.search-box input {
+  border-radius: 8px 0 0 8px;
+}
+
+.search-box button {
+  border-radius: 0 8px 8px 0;
+}
+
+
+/* RESULT */
+
+.result {
+  max-width: 900px;
+
+  margin-top: 30px;
+
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 15px;
+
+  box-shadow: 0 8px 30px rgba(0,0,0,.08);
+}
+
+.result-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.small {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.result h3 {
+  font-size: 28px;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.safe,
+.green {
+  color: #159447;
+}
+
+.danger {
+  color: #d62828;
+}
+
+.stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(160px, 1fr));
+
+  gap: 15px;
+
+  margin-top: 25px;
+}
+
+.stat {
+  background: #f5f8fc;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.stat span {
+  font-size: 24px;
+}
+
+.stat small {
+  display: block;
+  color: #64748b;
+}
+
+.stat strong {
+  font-size: 23px;
+}
+
+
+/* LIGHT SECTION */
+
+.light {
+  background: #eaf1f7;
+}
+
+
+/* FEATURES */
+
+.feature-grid {
+  margin-top: 35px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(250px, 1fr));
+
+  gap: 20px;
+}
+
+.feature-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,.06);
+}
+
+.icon {
+  font-size: 38px;
+}
+
+.feature-card h3 {
+  margin: 12px 0;
+}
+
+
+/* ENERGY */
+
+.energy-grid {
+  margin-top: 35px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+
+  gap: 20px;
+}
+
+.energy-card {
+  background: white;
+
+  padding: 28px;
+
+  border-radius: 15px;
+}
+
+.energy-card span {
+  font-size: 38px;
+}
+
+.energy-card strong {
+  display: block;
+  margin: 8px 0;
 }
 
 
 /* LOGIN */
 
-function login() {
+.login-grid {
+  margin-top: 35px;
 
-  let id =
-    document
-      .getElementById("loginId")
-      .value
-      .trim()
-      .toLowerCase();
+  display: grid;
 
+  grid-template-columns:
+    repeat(auto-fit, minmax(280px, 1fr));
 
-  let password =
-    document
-      .getElementById("loginPassword")
-      .value;
+  gap: 25px;
+}
 
+.login-card {
+  background: white;
+  padding: 35px;
 
-  let selectedState =
-    document
-      .getElementById("stateSelect")
-      .value;
+  border-radius: 15px;
 
+  box-shadow: 0 5px 20px rgba(0,0,0,.06);
+}
 
-  let valid = false;
+.big-icon {
+  font-size: 45px;
+}
 
+.login-card h3 {
+  margin: 10px 0;
+  font-size: 25px;
+}
 
-  /* MAIN ADMIN */
-
-  if (
-    loginType === "main" &&
-    id === "mainadmin" &&
-    password === "demo123"
-  ) {
-
-    valid = true;
-
-    showDashboard("🇮🇳 National Main Admin");
-
-  }
-
-
-  /* RAJASTHAN */
-
-  else if (
-    loginType === "state" &&
-    selectedState === "rajasthan" &&
-    id === "rajasthan" &&
-    password === "raj123"
-  ) {
-
-    valid = true;
-
-    showDashboard("🏛️ Rajasthan Transport Safety");
-
-  }
-
-
-  /* GUJARAT */
-
-  else if (
-    loginType === "state" &&
-    selectedState === "gujarat" &&
-    id === "gujarat" &&
-    password === "guj123"
-  ) {
-
-    valid = true;
-
-    showDashboard("🏛️ Gujarat Transport Safety");
-
-  }
-
-
-  /* MAHARASHTRA */
-
-  else if (
-    loginType === "state" &&
-    selectedState === "maharashtra" &&
-    id === "maharashtra" &&
-    password === "mah123"
-  ) {
-
-    valid = true;
-
-    showDashboard("🏛️ Maharashtra Transport Safety");
-
-  }
-
-
-  /* MADHYA PRADESH */
-
-  else if (
-    loginType === "state" &&
-    selectedState === "madhya" &&
-    id === "madhya" &&
-    password === "mp123"
-  ) {
-
-    valid = true;
-
-    showDashboard("🏛️ Madhya Pradesh Transport Safety");
-
-  }
-
-
-  if (!valid) {
-
-    document
-      .getElementById("loginMessage")
-      .textContent =
-      "❌ Invalid ID or password.";
-
-    document
-      .getElementById("loginMessage")
-      .style.color =
-      "#d62828";
-
-  }
-
+.login-card button {
+  margin-top: 20px;
 }
 
 
-/* SHOW DASHBOARD */
+/* MODAL */
 
-function showDashboard(title) {
+.modal {
+  position: fixed;
 
-  closeLogin();
+  inset: 0;
 
+  background: rgba(0,0,0,.65);
 
-  document
-    .getElementById("dashboard")
-    .classList.remove("hidden");
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  padding: 20px;
 
-  document
-    .getElementById("dashboardTitle")
-    .textContent =
-    title;
+  z-index: 10;
+}
 
+.modal-box {
+  background: white;
 
-  loadBusTable();
+  width: 100%;
+  max-width: 420px;
 
+  padding: 30px;
 
-  document
-    .getElementById("dashboard")
-    .scrollIntoView({
-      behavior: "smooth"
-    });
+  border-radius: 15px;
 
+  position: relative;
+}
+
+.modal-box h2 {
+  margin-bottom: 20px;
+}
+
+.modal-box input,
+.modal-box select {
+  margin-bottom: 12px;
+}
+
+.modal-box button:not(.close) {
+  width: 100%;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+
+  background: none;
+  color: #172033;
+
+  font-size: 28px;
+  padding: 5px;
 }
 
 
-/* BUS TABLE */
+/* DASHBOARD */
 
-function loadBusTable() {
+.dashboard {
+  background: #f5f8fc;
+}
 
-  let table =
-    document.getElementById("busTable");
+.dashboard-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.logout {
+  background: #d62828;
+}
 
-  table.innerHTML = "";
+.dashboard-cards {
+  margin-top: 30px;
 
+  display: grid;
 
-  Object.keys(buses).forEach(function(busNumber) {
+  grid-template-columns:
+    repeat(auto-fit, minmax(190px, 1fr));
 
-    let bus = buses[busNumber];
+  gap: 18px;
+}
 
-    let seats =
-      bus.capacity - bus.passengers;
+.dash-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+}
 
+.dash-card small {
+  color: #64748b;
+}
 
-    let status =
-      bus.passengers >= bus.capacity
-        ? '<span class="danger">● FULL</span>'
-        : '<span class="green">● SAFE</span>';
+.dash-card strong {
+  display: block;
+  font-size: 34px;
+  margin-top: 5px;
+}
 
-
-    let row = `
-      <tr>
-
-        <td><b>${busNumber}</b></td>
-
-        <td>
-          ${bus.passengers}/${bus.capacity}
-        </td>
-
-        <td>
-          ${seats}
-        </td>
-
-        <td>
-          ${bus.gate}
-        </td>
-
-        <td>
-          ${status}
-        </td>
-
-      </tr>
-    `;
-
-
-    table.innerHTML += row;
-
-  });
-
+.emergency-card strong {
+  color: #d62828;
 }
 
 
-/* LOGOUT */
+/* TABLE */
 
-function logout() {
+.table-box {
+  margin-top: 30px;
 
-  document
-    .getElementById("dashboard")
-    .classList.add("hidden");
+  background: white;
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+  padding: 25px;
+
+  border-radius: 15px;
+
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  margin-top: 20px;
+}
+
+th,
+td {
+  padding: 13px;
+
+  text-align: left;
+
+  border-bottom: 1px solid #e6ebf1;
+}
+
+th {
+  color: #64748b;
+  font-size: 13px;
+}
+
+
+/* EMERGENCY */
+
+.emergency-monitor {
+  margin-top: 25px;
+
+  background: #fff4f4;
+
+  border-left: 5px solid #d62828;
+
+  padding: 25px;
+
+  border-radius: 10px;
+}
+
+.emergency-monitor p {
+  margin-top: 8px;
+}
+
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+
+  background: #102a43;
+
+  color: white;
+
+  padding: 40px 20px;
+}
+
+footer p {
+  color: #c5d5e4;
+}
+
+.copyright {
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+
+/* HIDDEN */
+
+.hidden {
+  display: none !important;
+}
+
+
+/* MOBILE */
+
+@media(max-width: 650px) {
+
+  header {
+    height: auto;
+    padding: 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero {
+    min-height: 550px;
+    padding: 50px 7%;
+  }
+
+  .section {
+    padding: 60px 6%;
+  }
+
+  .section h2 {
+    font-size: 30px;
+  }
+
+  .search-box {
+    flex-direction: column;
+  }
+
+  .search-box input,
+  .search-box button {
+    border-radius: 8px;
+  }
+
+  .search-box button {
+    margin-top: 8px;
+  }
+
+  .dashboard-head {
+    align-items: flex-start;
+    gap: 15px;
+  }
 
 }
