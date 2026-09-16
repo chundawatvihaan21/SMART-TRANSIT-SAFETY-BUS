@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f8fc;
+  color: #172033;
+  line-height: 1.6;
+}
+
+/* HEADER */
+
+header {
+  height: 72px;
+  background: #102a43;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 7%;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 28px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #8fd3ff;
+}
+
+
+/* HERO */
+
+.hero {
+  min-height: 620px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 70px 8%;
+
+  background:
+    linear-gradient(120deg, #102a43, #176b87);
+
+  color: white;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 6vw, 72px);
+  line-height: 1.05;
+  margin: 15px 0 20px;
+}
+
+.tag {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #2388a9;
+}
+
+.hero .tag {
+  color: #9eddf3;
+}
+
+.subtitle {
+  max-width: 650px;
+  color: #d8e7f2;
+  font-size: 18px;
+}
+
+.buttons {
+  margin-top: 35px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+
+/* BUTTONS */
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 13px 20px;
+
+  background: #2388a9;
+  color: white;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: .88;
+}
+
+.outline
